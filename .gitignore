@@ -10,6 +10,9 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# dependencies
+/zooplus_workspace
+
 # Package Files #
 *.jar
 *.war
