@@ -1,18 +1,60 @@
 .gradient-custom {
-    /* fallback for old browsers */
     background: #ffffff;
-  
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 236, 210, 1));
-  
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 236, 210, 1))
-  }
-  
-  .carousel-indicators li {
+    background: linear-gradient(to right, rgba(255, 255, 255, 1), rgb(243, 239, 181))
+}
+
+.carousel-indicators li {
     background-color: #282828;
     width: 7px;
     height: 7px;
     border-radius: 50%;
-  }
- 
+}
+
+.hero-image {
+    background-image: url("../assets/img/back.png");
+    /* The image used */
+    background-color: #cccccc;
+    /* Used if the image is unavailable */
+    height: 500px;
+    /* You must set a specified height */
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: cover;
+    /* Resize the background image to cover the entire container */
+}
+
+.height {
+    height: 100vh
+}
+
+.search {
+    position: relative;
+}
+
+.search input {
+    height: 60px;
+    text-indent: 25px;
+    border: 2px solid #d6d4d4
+}
+
+.search input:focus {
+    box-shadow: none;
+    border: 2px solid cadetblue
+}
+
+.search .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 16px
+}
+
+.search button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 50px;
+    width: 150px;
+    background: midnightblue;
+}
