@@ -6,14 +6,20 @@
             <div class="col-md-9 col-lg-7 col-xl-6">
                 <h1 class="text-center text-white">Weather forecast for your city</h1>
                 <div class="search">
-                    <input type="text" [(ngModel)]="city" style="border-radius:4rem ;font-size: 1.5rem;" class="form-control" placeholder="Enter City">
-                    <button (click)="toggleShow()" style="border-radius:4rem ;font-size: 1.5rem;color: azure;" class="btn">Get
-            Weather</button>
+                    <input type="text" #city name="city" style="border-radius:4rem ;font-size: 1.5rem;" class="form-control" placeholder="Enter City">
+                    <button (click)="toggleShow(city.value)" style="border-radius:4rem ;font-size: 1.5rem;color: azure;" class="btn">Get Weather</button>
                     <div style="font-size: 1.5rem;" class="text-white text-center">{{ now }}</div>
+                    <div *ngIf="errorPannelShow">
+                        <h3 *ngIf="resultsCity" class="text-center text-danger">
+                            {{resultsCity}}
+                        </h3>
+
+                    </div>
+
                 </div>
             </div>
             <div *ngIf="resultPannelShow" class="col-md-9 col-lg-7 col-xl-4">
-                <h1 class="text-center text-white">Showing Results for Belgium</h1>
+                <h1 class="text-center text-white">Showing results for {{ weatherData.name }}</h1>
                 <div class="card mb-4 gradient-custom" style="border-radius: 25px;">
                     <div class="card-body p-4">
                         <div id="demo1" class="carousel slide" data-ride="carousel">
@@ -22,8 +28,8 @@
                                 <div class="carousel-item active">
                                     <div class="d-flex justify-content-between mb-4 pb-2">
                                         <div>
-                                            <h2 class="display-2"><strong>23°C</strong></h2>
-                                            <p class="text-muted mb-0">Coimbra, Portugal</p>
+                                            <h2 class="display-2"><strong>{{ weatherData.main.temp }} °C</strong></h2>
+                                            <p class="text-muted mb-0">{{ weatherData.name }}, {{ weatherData.sys.country }}</p>
                                         </div>
                                         <div>
                                             <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-weather/ilu3.png" width="150px">
@@ -137,8 +143,5 @@
 
             </div>
         </div>
-
     </div>
-
-
 </section>
