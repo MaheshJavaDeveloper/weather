@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { WeatherapiService } from '../app/service/weatherapi.service';
-import { WeatherData } from './interface/WeatherData'
+import { WeatherData } from './interface/WeatherData';
+import iconJson from '../assets/icons/weatherIcons.json';
+import { Icon } from './model/icon.model';
 
 
 @Component({
@@ -15,6 +17,10 @@ export class AppComponent {
   resultPannelShow: boolean = false;
   errorPannelShow: boolean = false;
   resultsCity: string = "";
+  icon: string = "";
+  weatherIcons: Icon[] = iconJson;
+  bgClear: boolean =false;
+  bgCloudy: boolean =false;
 
   constructor(private weatherapiService: WeatherapiService) {
     setInterval(() => {
@@ -23,10 +29,19 @@ export class AppComponent {
   }
 
   toggleShow(city: string) {
+    
     if (city) {
       this.weatherapiService.getWeather(city).subscribe((weatherDataResp: any) => {
         if (weatherDataResp.main) {
           this.weatherData = weatherDataResp;
+          this.icon = weatherDataResp.weather[0].icon;
+          if(weatherDataResp.weather[0].main=='Clear'){
+            this.bgClear=true;
+            this.bgCloudy=false;
+          } else {
+            this.bgClear=false;
+            this.bgCloudy=true;
+          }
           this.errorPannelShow = false;
           this.resultPannelShow = true;
         } else {

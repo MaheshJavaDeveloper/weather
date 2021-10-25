@@ -1,6 +1,11 @@
-.gradient-custom {
+.gradient-sun {
     background: #ffffff;
     background: linear-gradient(to right, rgba(255, 255, 255, 1), rgb(243, 239, 181))
+}
+
+.gradient-cloudy {
+    background: #ffffff;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1), rgb(177, 226, 241))
 }
 
 .carousel-indicators li {
@@ -57,4 +62,8 @@
     height: 50px;
     width: 150px;
     background: midnightblue;
+}
+
+.weather-icon {
+    margin: 0px 0px 0px 100px;
 }

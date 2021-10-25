@@ -19,20 +19,34 @@
                 </div>
             </div>
             <div *ngIf="resultPannelShow" class="col-md-9 col-lg-7 col-xl-4">
-                <h1 class="text-center text-white">Showing results for {{ weatherData.name }}</h1>
-                <div class="card mb-4 gradient-custom" style="border-radius: 25px;">
+                <h1 class="text-center text-white">Showing results for {{ weatherData.name }}
+                </h1>
+                <div class="card mb-4" [ngClass]="{'gradient-cloudy': bgCloudy, 'gradient-sun': bgClear}" style="border-radius: 25px;">
                     <div class="card-body p-4">
                         <div id="demo1" class="carousel slide" data-ride="carousel">
                             <!-- Carousel inner -->
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <div class="d-flex justify-content-between mb-4 pb-2">
+                                    <div class="d-flex justify-content-between">
                                         <div>
-                                            <h2 class="display-2"><strong>{{ weatherData.main.temp }} °C</strong></h2>
-                                            <p class="text-muted mb-0">{{ weatherData.name }}, {{ weatherData.sys.country }}</p>
+                                            <h3 class="text-success">Current Weather</h3>
+                                            <h2 class="display-2 text-warning"><strong>{{ weatherData.main.temp }}
+                                                    °C</strong></h2>
+                                            <p class="text-muted mb-0 "><strong>{{ weatherData.name }}, {{
+                                                    weatherData.sys.country }}</strong></p>
+                                            <p class="text-muted mb-0">Feels: {{ weatherData.main.feels_like }} °C , Min: {{ weatherData.main.temp_min }} °C, Max: {{ weatherData.main.temp_max }} °C</p>
+                                            <p class="text-muted mb-0">Pressure: {{ weatherData.main.pressure }}, Humidity: {{ weatherData.main.humidity }}</p>
+
                                         </div>
                                         <div>
-                                            <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-weather/ilu3.png" width="150px">
+                                            <img class="weather-icon" src='http://openweathermap.org/img/wn/{{icon}}@2x.png'>
+                                            <p class="text-muted text-right mb-0">{{ weatherData.weather[0].main}}, {{ weatherData.weather[0].description}}
+                                            </p>
+                                            <p class="text-muted mb-0 text-right">
+                                                <img width="30" src='http://openweathermap.org/img/wn/02d@2x.png'> {{weatherData.sys.sunrise * 1000 | date:'h:mma'}}
+                                                <img width="30" src='http://openweathermap.org/img/wn/02n@2x.png'> {{weatherData.sys.sunset * 1000 | date:'h:mma'}}
+                                            </p>
+
                                         </div>
                                     </div>
                                 </div>
@@ -46,12 +60,6 @@
                     <div class="card-body p-4">
 
                         <div id="demo2" class="carousel slide" data-ride="carousel">
-                            <!-- Indicators -->
-                            <ul class="carousel-indicators mb-0">
-                                <li data-target="#demo2" data-slide-to="0"></li>
-                                <li data-target="#demo2" data-slide-to="1" class="active"></li>
-                                <li data-target="#demo2" data-slide-to="2"></li>
-                            </ul>
                             <!-- Carousel inner -->
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
@@ -98,12 +106,6 @@
                     <div class="card-body p-4">
 
                         <div id="demo3" class="carousel slide" data-ride="carousel">
-                            <!-- Indicators -->
-                            <ul class="carousel-indicators mb-0">
-                                <li data-target="#demo3" data-slide-to="0"></li>
-                                <li data-target="#demo3" data-slide-to="1"></li>
-                                <li data-target="#demo3" data-slide-to="2" class="active"></li>
-                            </ul>
                             <!-- Carousel inner -->
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
