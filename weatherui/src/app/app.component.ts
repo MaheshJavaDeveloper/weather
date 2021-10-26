@@ -1,7 +1,6 @@
 import { Component} from '@angular/core';
 import { WeatherapiService } from '../app/service/weatherapi.service';
 import iconJson from '../assets/icons/weatherIcons.json';
-import cityJson from '../assets/json/cities.json';
 import { Icon } from './model/icon.model';
 
 
@@ -19,7 +18,6 @@ export class AppComponent{
   resultsCity: string = "";
   icon: string = "";
   weatherIcons: Icon[] = iconJson;
-  cityList: String[] = cityJson;
   bgClear: boolean = false;
   bgCloudy: boolean = false;
   weatherHistoryDataDaily: any;
