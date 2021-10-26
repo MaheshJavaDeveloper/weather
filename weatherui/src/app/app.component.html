@@ -1,25 +1,22 @@
 <section class="hero-image vh-100" style="background-color: #C1CFEA;">
     <div class="container py-5 h-100">
-
         <div class="row d-flex justify-content-center align-items-center h-100" style="color: #282828;">
 
-            <div class="col-md-9 col-lg-7 col-xl-6">
+            <div class="col-md-9 col-lg-7 col-xl-5">
                 <h1 class="text-center text-white">Weather forecast for your city</h1>
                 <div class="search">
                     <input type="text" #city name="city" style="border-radius:4rem ;font-size: 1.5rem;" class="form-control" placeholder="Enter City">
                     <button (click)="toggleShow(city.value)" style="border-radius:4rem ;font-size: 1.5rem;color: azure;" class="btn">Get Weather</button>
-                    <div style="font-size: 1.5rem;" class="text-white text-center">{{ now }}</div>
+                    <div style="font-size: 1rem;" class="text-white text-center">{{ now }}</div>
                     <div *ngIf="errorPannelShow">
                         <h3 *ngIf="resultsCity" class="text-center text-danger">
                             {{resultsCity}}
                         </h3>
-
                     </div>
-
                 </div>
             </div>
-            <div *ngIf="resultPannelShow" class="col-md-9 col-lg-7 col-xl-4">
-                <h1 class="text-center text-white">Showing results for {{ weatherData.name }}
+            <div *ngIf="resultPannelShow" class="col-md-9 col-lg-7 col-xl-6">
+                <h1 class="text-center text-white">Showing weather for {{ weatherData.name }}
                 </h1>
                 <div class="card mb-4" [ngClass]="{'gradient-cloudy': bgCloudy, 'gradient-sun': bgClear}" style="border-radius: 25px;">
                     <div class="card-body p-4">
@@ -34,8 +31,9 @@
                                                     °C</strong></h2>
                                             <p class="text-muted mb-0 "><strong>{{ weatherData.name }}, {{
                                                     weatherData.sys.country }}</strong></p>
-                                            <p class="text-muted mb-0">Feels: {{ weatherData.main.feels_like }} °C , Min: {{ weatherData.main.temp_min }} °C, Max: {{ weatherData.main.temp_max }} °C</p>
-                                            <p class="text-muted mb-0">Pressure: {{ weatherData.main.pressure }}, Humidity: {{ weatherData.main.humidity }}</p>
+                                            <p class="text-muted mb-0"> <i class="fas fa-child"></i> Feels like: <strong class="text-danger">{{ weatherData.main.feels_like }} °C </strong> , <i class="fas fa-arrow-down"></i> Min: <strong class="text-danger">{{ weatherData.main.temp_min }} °C</strong>,
+                                                <i class="fas fa-arrow-up"></i> Max: <strong class="text-danger">{{ weatherData.main.temp_max }} °C</strong></p>
+                                            <p class="text-muted mb-0"><i class="fas fa-wind"></i> {{ weatherData.wind.speed }}, <i class="fas fa-tint"></i> {{ weatherData.main.humidity }}</p>
 
                                         </div>
                                         <div>
@@ -56,43 +54,20 @@
                     </div>
                 </div>
 
-                <div class="card mb-4" style="border-radius: 25px;">
+                <div class="card mb-4" [ngClass]="{'gradient-cloudy': bgCloudy, 'gradient-sun': bgClear}" style="border-radius: 25px;">
                     <div class="card-body p-4">
 
                         <div id="demo2" class="carousel slide" data-ride="carousel">
                             <!-- Carousel inner -->
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <div class="d-flex justify-content-around text-center mb-4 pb-3 pt-2">
-                                        <div class="flex-column">
-                                            <p class="small"><strong>21°C</strong></p>
-                                            <i class="fas fa-sun fa-2x mb-3" style="color: #ddd;"></i>
-                                            <p class="mb-0"><strong>12:00</strong></p>
-                                            <p class="mb-0 text-muted" style="font-size: .65rem;">PM</p>
-                                        </div>
-                                        <div class="flex-column">
-                                            <p class="small"><strong>2°C</strong></p>
-                                            <i class="fas fa-sun fa-2x mb-3" style="color: #ddd;"></i>
-                                            <p class="mb-0"><strong>1:00</strong></p>
-                                            <p class="mb-0 text-muted" style="font-size: .65rem;">PM</p>
-                                        </div>
-                                        <div class="flex-column">
-                                            <p class="small"><strong>20°C</strong></p>
-                                            <i class="fas fa-cloud fa-2x mb-3" style="color: #ddd;"></i>
-                                            <p class="mb-0"><strong>2:00</strong></p>
-                                            <p class="mb-0 text-muted" style="font-size: .65rem;">PM</p>
-                                        </div>
-                                        <div class="flex-column">
-                                            <p class="small"><strong>19°C</strong></p>
-                                            <i class="fas fa-cloud fa-2x mb-3" style="color: #ddd;"></i>
-                                            <p class="mb-0"><strong>3:00</strong></p>
-                                            <p class="mb-0 text-muted" style="font-size: .65rem;">PM</p>
-                                        </div>
-                                        <div class="flex-column">
-                                            <p class="small"><strong>18°C</strong></p>
-                                            <i class="fas fa-cloud-showers-heavy fa-2x mb-3" style="color: #ddd;"></i>
-                                            <p class="mb-0"><strong>4:00</strong></p>
-                                            <p class="mb-0 text-muted" style="font-size: .65rem;">PM</p>
+                                    <h4 class="text-success text-center">Hourly Forecast</h4>
+                                    <div class="d-flex justify-content-around text-center pb-2  pt-2">
+                                        <div class="flex-column" *ngFor="let hourly of this.weatherHistoryDataHourly">
+                                            <p class="small"><strong>{{hourly.dt * 1000 | date:'h a'}}</strong></p>
+                                            <img width="30" src='http://openweathermap.org/img/wn/{{hourly.weather[0].icon}}@2x.png'>
+                                            <p class="mb-0"><strong>{{hourly.temp}}°C</strong></p>
+                                            <p class="mb-0 text-muted" style="font-size: .65rem;">{{hourly.weather[0].main}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -102,38 +77,18 @@
                     </div>
                 </div>
 
-                <div class="card" style="border-radius: 25px;">
+                <div class="card mb-4" [ngClass]="{'gradient-cloudy': bgCloudy, 'gradient-sun': bgClear}" style="border-radius: 25px;">
                     <div class="card-body p-4">
-
-                        <div id="demo3" class="carousel slide" data-ride="carousel">
-                            <!-- Carousel inner -->
+                        <div id="demo2" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <div class="d-flex justify-content-around text-center mb-4 pb-3 pt-2">
-                                        <div class="flex-column">
-                                            <p class="small"><strong>21°C</strong></p>
-                                            <i class="fas fa-sun fa-2x mb-3" style="color: #ddd;"></i>
-                                            <p class="mb-0"><strong>Mon</strong></p>
-                                        </div>
-                                        <div class="flex-column">
-                                            <p class="small"><strong>20°C</strong></p>
-                                            <i class="fas fa-sun fa-2x mb-3" style="color: #ddd;"></i>
-                                            <p class="mb-0"><strong>Tue</strong></p>
-                                        </div>
-                                        <div class="flex-column">
-                                            <p class="small"><strong>16°C</strong></p>
-                                            <i class="fas fa-cloud fa-2x mb-3" style="color: #ddd;"></i>
-                                            <p class="mb-0"><strong>Wed</strong></p>
-                                        </div>
-                                        <div class="flex-column">
-                                            <p class="small"><strong>17°C</strong></p>
-                                            <i class="fas fa-cloud fa-2x mb-3" style="color: #ddd;"></i>
-                                            <p class="mb-0"><strong>Thu</strong></p>
-                                        </div>
-                                        <div class="flex-column">
-                                            <p class="small"><strong>18°C</strong></p>
-                                            <i class="fas fa-cloud-showers-heavy fa-2x mb-3" style="color: #ddd;"></i>
-                                            <p class="mb-0"><strong>Fri</strong></p>
+                                    <h4 class="text-danger text-center">Forecast for the next 7 days</h4>
+                                    <div class="d-flex justify-content-around text-center pb-2 pt-2">
+                                        <div class="flex-column" *ngFor="let daily of weatherHistoryDataDaily">
+                                            <p class="small"><strong>{{daily.dt * 1000 | date:'d EEE'}}</strong></p>
+                                            <img width="30" src='http://openweathermap.org/img/wn/{{daily.weather[0].icon}}@2x.png'>
+                                            <p class="mb-0"><strong>{{daily.temp.max}}/{{daily.temp.min}}°C</strong></p>
+                                            <p class="mb-0 text-muted" style="font-size: .65rem;">{{daily.weather[0].main}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +97,6 @@
 
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

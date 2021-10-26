@@ -13,4 +13,7 @@ export class WeatherapiService {
   getWeather(city : string): Observable <WeatherData>{
     return this.http.get<WeatherData>("http://localhost:8080/weathers/"+city);
   }
+  getWeatherHistory(lat : string,lon : string) {
+    return this.http.get("http://localhost:8080/weathers/"+lat+"/"+lon);
+  }
 }
