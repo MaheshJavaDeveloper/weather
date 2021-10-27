@@ -29,14 +29,14 @@ export class AppComponent{
     }, 1);
   }  
   
-  toggleShow(city: string) {
+  getWeatherData(city: string) {
 
     if (city) {
       this.weatherapiService.getWeather(city).subscribe((weatherDataResp: any) => {
         if (weatherDataResp.main) {
           this.weatherData = weatherDataResp;
           this.icon = weatherDataResp.weather[0].icon;
-          if (weatherDataResp.weather[0].main == 'Clear') {
+          if (weatherDataResp.main.temp >= 20) {
             this.bgClear = true;
             this.bgCloudy = false;
           } else {
@@ -55,7 +55,12 @@ export class AppComponent{
           this.resultPannelShow = false;
           this.errorPannelShow = true;
         }
-      });
+      }, error => {
+        console.log('oops', error);
+        this.resultsCity = 'Weather service provider currently not available. Please try later';
+        this.resultPannelShow = false;
+        this.errorPannelShow = true;
+     });
     } else {
       this.resultsCity = 'No City entered !!! Please type any vaild City.';
       this.resultPannelShow = false;
