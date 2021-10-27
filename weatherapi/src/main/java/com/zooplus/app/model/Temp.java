@@ -1,5 +1,8 @@
 package com.zooplus.app.model;
 
+import lombok.Data;
+
+@Data
 public class Temp {
 	public int day;
 	public int min;

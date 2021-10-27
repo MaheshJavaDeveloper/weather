@@ -2,6 +2,9 @@ package com.zooplus.app.model;
 
 import java.util.List;
 
+import lombok.Data;
+
+@Data
 public class Daily {
 	 public int dt;
 	 public int sunrise;

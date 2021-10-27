@@ -1,5 +1,8 @@
 package com.zooplus.app.model;
 
+import lombok.Data;
+
+@Data
 public class Sys {
     public int type;
     public int id;

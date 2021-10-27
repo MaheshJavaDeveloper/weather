@@ -1,5 +1,8 @@
 package com.zooplus.app.model;
 
+import lombok.Data;
+
+@Data
 public class Weather{
     public int id;
     public String main;

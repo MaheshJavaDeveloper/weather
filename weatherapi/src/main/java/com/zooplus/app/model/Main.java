@@ -1,5 +1,8 @@
 package com.zooplus.app.model;
 
+import lombok.Data;
+
+@Data
 public class Main {
     public int temp;
     public int feels_like;
