@@ -48,6 +48,9 @@ Added all the possible test cases to perform the Unit Test Cases in the applicat
  * Increased 5 days forecast to 7 (Slight change from wireframe) to achieve one complete upcoming week.
  * Have slightly changed the design from the wireframe which was given in the task just to achieve a few more user-friendly experiences.
  * Added Digital Clock under Search bar as additional info to the user.
+ * Results panel background will have two variations.
+    1. Warm background for temperature above 20°c
+    2. Cool background for temperature below 20°C
 
  
 
