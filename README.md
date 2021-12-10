@@ -1,4 +1,4 @@
-# Project: Weather Portal (Zooplus)
+# Project: Weather Portal
 This portal is built to show current weather and historical weather status for the given city using the search bar provided in the application.
 ![image](https://user-images.githubusercontent.com/61374040/139161797-42fa0ccb-94fd-4e75-b1c9-840d2f6a63de.png)
 
